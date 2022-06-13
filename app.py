@@ -1,4 +1,4 @@
-from utils.db_functions import initialize_db
+from utils.db_functions import initialize_db, close_db_connections
 
 from utils.functions import (
     MAIN_MENU_OPTIONS,
@@ -93,6 +93,7 @@ def run_main_menu(products, couriers, orders):
     elif user_input == '3':
         run_orders_menu(products, couriers, orders)
     elif user_input == '0':
+        close_db_connections()
         exit()
     else:
         print('try again')

@@ -48,9 +48,9 @@ MAIN_MENU_OPTIONS = {
 
 
 # ----------- print in terminal ----------------
-def print_menu(MAIN_MENU_OPTIONS):
+def print_menu(menu_dict):
     print()
-    for option, title in MAIN_MENU_OPTIONS.items():
+    for option, title in menu_dict.items():
         print(f'[{option}]: {title}')
 
 def print_list(my_list):
