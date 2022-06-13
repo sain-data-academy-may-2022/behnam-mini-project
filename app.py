@@ -13,6 +13,7 @@ from utils.functions import (
     print_list,
 
     add_product,
+    update_order_courier,
     update_product,
     delete_product,
 
@@ -68,9 +69,11 @@ def run_orders_menu(products, couriers, orders):
     if user_input == '1':
         print_list(orders)
     elif user_input == '2':
-        orders = add_order(orders, products, couriers)
+        orders = add_order(products, couriers)
     elif user_input == '3':
         orders = update_order_status(orders)
+    elif user_input == '4':
+        orders = update_order_courier(orders, couriers)
     elif user_input == '5':
         orders = delete_order(orders)
     elif user_input == '0':
@@ -90,7 +93,6 @@ def run_main_menu(products, couriers, orders):
     elif user_input == '3':
         run_orders_menu(products, couriers, orders)
     elif user_input == '0':
-        # write_data(DATA_FILE, products, couriers, orders)
         exit()
     else:
         print('try again')

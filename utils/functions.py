@@ -27,7 +27,7 @@ ORDERS_MENU_OPTIONS = {
     '1': 'show orders list',
     '2': 'add an order',
     '3': 'update existing order status',
-    '4': 'update existing order',
+    '4': 'update existing order courier',
     '5': 'delete order',
     '0': 'back to main menu',
 }
@@ -69,24 +69,25 @@ def print_list(my_list):
 
 
 def read_products():
-    return read_from_db(" SELECT product_id, name as product_name FROM products ")
+    return read_from_db(" SELECT product_id, name as product_name FROM products ORDER BY product_id ")
 
 def read_couriers():
-    return read_from_db(" SELECT courier_id, name as courier_name FROM couriers ")
+    return read_from_db(" SELECT courier_id, name as courier_name FROM couriers ORDER BY courier_id ")
 
 def read_orders():
     return read_from_db("""
      SELECT 
         order_id
-        , p.name as product_name
-        , c.name as courier_name
         , customer_name
         , customer_address
         , CAST(customer_phone as CHAR(50)) as customer_phone
+        , p.name as product_name
+        , c.name as courier_name
         , current_status
     FROM orders o
     INNER JOIN products p USING(product_id)
     INNER JOIN couriers c USING(courier_id)
+    ORDER BY order_id
      """)
 
 def insert_product_into_db(product_name):
@@ -245,7 +246,9 @@ def delete_courier(couriers_list):
 
 
 # ----------------order -----------------------
-def add_order(orders_list, products_list, couriers_list):
+def add_order(products_list, couriers_list):
+    print('Available products:')
+    print_list(products_list)
     print('Available couriers:')
     print_list(couriers_list)
     print('Status codes:')
@@ -268,21 +271,39 @@ def add_order(orders_list, products_list, couriers_list):
 
 def update_order_status(orders_list):
     try:
-        order_id = int(input('enter order_id id to update: '))
-        assert orders_list[order_id], 'wrong order_id'
-        print_list(ORDERS_STATUS_OPTIONS)
-        orders_list[order_id]['status'] = ORDERS_STATUS_OPTIONS[int(input('select status_id id: '))]
+        order_index = int(input('enter order id to update: '))
+        assert orders_list[order_index], 'wrong order_id'
+        order_id = orders_list[order_index][0]
+        print_menu(ORDERS_STATUS_OPTIONS)
+        new_status = ORDERS_STATUS_OPTIONS[int(input('select status_id id: '))]
+        update_order_status_on_db(order_id, new_status)
     except Exception as e:
         print('error: ', e)
         print('Please try again.')
-    return orders_list
+    return read_orders()
+
+
+def update_order_courier(orders_list, couriers_list):
+    try:
+        order_index = int(input('enter order id to update: '))
+        assert orders_list[order_index], 'wrong order_id'
+        order_id = orders_list[order_index][0]
+        print_list(couriers_list)
+        courier_id = couriers_list[int(input('select courier_id id: '))][0]
+        update_order_courier_on_db(order_id, courier_id)
+    except Exception as e:
+        print('error: ', e)
+        print('Please try again.')
+    return read_orders()
 
 
 def delete_order(orders_list):
     try:
-        order_id = int(input('enter order_id id to delete: '))
-        del orders_list[order_id]
+        order_index = int(input('enter order_id id to delete: '))
+        assert orders_list[order_index], 'wrong order_id'
+        order_id = orders_list[order_index][0]
+        delete_order_from_db(order_id)
     except Exception as e:
         print('error: ', e)
         print('Please try again.')
-    return orders_list
+    return read_orders()
