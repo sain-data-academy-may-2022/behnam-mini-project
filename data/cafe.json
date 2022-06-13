@@ -1,0 +1,1 @@
+{"products": ["cola", "pepsi", "aaaa", "bbbb"], "couriers": ["Leo", "Bob"], "orders": [{"customer_name": "John", "customer_address": "Unit 2, 12 Main Street, LONDON, WH1 2ER", "customer_phone": "0789887334", "courier_id": 0, "status": "preparing"}]}
