@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 
 load_dotenv()
+
 host = os.environ.get("mysql_host")
 user = os.environ.get("mysql_user")
 password = os.environ.get("mysql_pass")
@@ -16,7 +17,6 @@ connection = pymysql.connect(host=host,
                              user=user,
                              password=password,
                              database=database,
-                            #  cursorclass=pymysql.cursors.DictCursor,
                              client_flag= CLIENT.MULTI_STATEMENTS
                              )
 
@@ -27,7 +27,6 @@ def read_from_db(query):
     return cursor.fetchall()
 
 def execute_on_db(query):
-    # print('query:', query)
     cursor.execute(query)
     connection.commit()
 
