@@ -1,10 +1,11 @@
 {
     "products": [
-        "cola",
+        "cola zero",
         "pepsi",
-        "aaaa",
         "Fanta",
-        "Marmalad"
+        "Marmalad",
+        "pepsi zero",
+        "cola zero2"
     ],
     "couriers": [
         "Leo",
