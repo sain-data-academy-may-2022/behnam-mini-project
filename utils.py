@@ -18,7 +18,7 @@ def write_data(file_path, products, couriers, orders):
                 'products': products,
                 'couriers': couriers,
                 'orders': orders,
-            }, file)
+            }, file, indent=4)
 
 
 # ----------- print in terminal ----------------
