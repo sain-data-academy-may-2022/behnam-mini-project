@@ -13,7 +13,14 @@ PRODUCTS_MENU_OPTIONS = {
 
 # --------------db-------------------------
 def read_products():
-    return read_from_db(" SELECT product_id, name as product_name FROM products ORDER BY product_id ")
+    return read_from_db("""
+    SELECT 
+        product_id
+        , name as product_name
+    FROM
+        products
+    ORDER BY product_id
+    """)
 
 
 def insert_product_into_db(product_name):
