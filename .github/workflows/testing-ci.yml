@@ -1,21 +1,13 @@
-name: Python application test with Github Actions
+name: list-repo
 
-on: [push]
+on: push
 
 jobs:
-  build:
-
+  list-repo-files:
+    name: List files in repository
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.8
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt --quiet
-    - name: Test with pytest
-      run: |
-        python -m pytest
+      - name: checkout-repo
+        uses: actions/checkout@v2
+      - name: list-dir
+        run: ls -laR # Recursively list directory contents
