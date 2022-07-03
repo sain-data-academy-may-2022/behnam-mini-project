@@ -8,6 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout-repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: list-dir
         run: ls -laR # Recursively list directory contents
