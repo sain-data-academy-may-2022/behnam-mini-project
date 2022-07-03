@@ -18,6 +18,9 @@ lint:
 	pylint --disable=R,C $$(git ls-files '*.py')
 
 analyze:
-	pygount --format=summary . 
+	pygount --format=summary .
+
+run:
+	python app.py
 
 all: install lint parallel-test format
