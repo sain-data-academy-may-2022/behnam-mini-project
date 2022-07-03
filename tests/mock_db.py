@@ -4,7 +4,6 @@
 # from mock import patch
 
 
-
 # MYSQL_USER = "root"
 # MYSQL_PASSWORD = "password"
 # MYSQL_DB = "testdb"
@@ -107,13 +106,13 @@
 #             print("Data insertion to couriers failed \n" + err)
 
 
-#         insert_data_query = """INSERT INTO `orders` 
+#         insert_data_query = """INSERT INTO `orders`
 #         (`product_id`,
 #          `courier_id`,
 #          `current_status`,
 #          `customer_name`,
 #          `customer_address`,
-#          `customer_phone`) 
+#          `customer_phone`)
 #         VALUES
 #         (1, 1, 'Out for delivery', 'Jack', 'test_address_1', 77777777),
 #         (2, 2, 'Preparing', 'Leo', 'test_address_2', 88888888),

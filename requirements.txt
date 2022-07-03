@@ -15,3 +15,7 @@ pytest==7.1.2
 python-dotenv==0.15.0
 six==1.15.0
 tomli==2.0.1
+pygount
+pytest-cov
+pylint
+black
