@@ -18,7 +18,6 @@ mypy-extensions==0.4.3
 mysql-connector-python==8.0.29
 packaging==21.3
 pathspec==0.9.0
-pkg_resources==0.0.0
 platformdirs==2.5.2
 pluggy==1.0.0
 protobuf==4.21.1
